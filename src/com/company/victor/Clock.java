@@ -15,7 +15,7 @@ public class Clock {
     public State currentState = State.DISPLAYTIME;
 
 
-
+// lol fdp
 
     public String changeMode(){
         //Time nico;
