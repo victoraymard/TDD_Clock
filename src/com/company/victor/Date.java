@@ -6,7 +6,7 @@ public class Date {
     int theDay=1;     //1-31
 
     public String dateSet(int year, int month, int day){
-        return "";
+        return "date set";
     }
 
     public String showDate(){

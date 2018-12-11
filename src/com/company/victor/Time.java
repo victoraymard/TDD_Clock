@@ -6,7 +6,7 @@ public class Time {
     int theSecond=0; //0-59
 
     public String timeSet(int hour, int minute, int second){
-        return "";
+        return "time set";
     }
     public String showTime(){
         return "Show Time";

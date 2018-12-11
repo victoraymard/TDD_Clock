@@ -15,10 +15,9 @@ public class Clock {
     public State currentState = State.DISPLAYTIME;
 
 
-// lol fdp
+
 
     public String changeMode(){
-        //Time nico;
         switch (this.currentState)
         {
             case DISPLAYTIME:
@@ -29,11 +28,30 @@ public class Clock {
                 return "transition impossible";
         }
     }
+
+
     public String ready(){
-        return "Ready";
+        switch (this.currentState){
+            case DISPLAYTIME:
+                return "time is ready to set";
+            case DISPLAYDATE:
+                return "date is ready to set";
+            default:
+                return "transition impossible";
+        }
     }
     public String set(int p1, int p2, int p3){
-        return "";
+
+        switch (this.currentState) {
+            case CHANGEDATE:
+                // setDate
+                return this.theDate.dateSet(p1, p2, p3);
+            case CHANGETIME:
+                // setTime
+                return  this.theTime.timeSet(p1, p2, p3);
+            default:
+               return  "transition impossible";
+        }
     }
 
 }
