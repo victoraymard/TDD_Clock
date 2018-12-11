@@ -51,7 +51,6 @@ public class ClockTest {
     public void Given_nothing_When_ChangeModeIsCalledAndCurrentStateIsS4_Then_displayErrorMessage() {
         testClock.currentState = State.CHANGEDATE;
         assertEquals("transition impossible",testClock.changeMode());
-
     }
 
 
@@ -104,6 +103,57 @@ public class ClockTest {
     public void Given_nothing_When_SetIsCalledAndCurrentStateIsS2_Then_displayErrorMessage() {
         testClock.currentState = State.DISPLAYDATE;
         assertEquals("transition impossible",testClock.set(0,0,0));
+    }
+
+    // tests aux bords (pour les sets de time et date)
+    // time
+    @Test // hour
+    public void Given_negativeHoure_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGETIME;
+        int a=-1;
+        int b=0;
+        int c=0;
+        assertEquals("setting error : hour",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_anHoureOver23_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGETIME;
+        int a=24;
+        int b=0;
+        int c=0;
+        assertEquals("setting error : hour",testClock.set(a,b,c));
+    }
+    @Test // minutes
+    public void Given_negativeMinutes_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGETIME;
+        int a=0;
+        int b=-1;
+        int c=0;
+        assertEquals("setting error : minutes",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_aMinuteOver59_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGETIME;
+        int a=0;
+        int b=60;
+        int c=0;
+        assertEquals("setting error : minutes",testClock.set(a,b,c));
+    }
+    @Test // secondes
+    public void Given_negativeSecondes_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGETIME;
+        int a=0;
+        int b=0;
+        int c=-1;
+        assertEquals("setting error : minutes",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_aSecondOver59_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGETIME;
+        int a=0;
+        int b=0;
+        int c=60;
+        assertEquals("setting error : minutes",testClock.set(a,b,c));
     }
 
 }
