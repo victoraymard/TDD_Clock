@@ -110,10 +110,10 @@ public class ClockTest {
     @Test // hour
     public void Given_negativeHoure_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
         testClock.currentState = State.CHANGETIME;
-        int a=-1;
-        int b=0;
-        int c=0;
-        assertEquals("setting error : hour",testClock.set(a,b,c));
+        int a = -1;
+        int b = 0;
+        int c = 0;
+        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
     }
     @Test
     public void Given_anHoureOver23_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
@@ -126,9 +126,9 @@ public class ClockTest {
     @Test // minutes
     public void Given_negativeMinutes_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
         testClock.currentState = State.CHANGETIME;
-        int a=0;
-        int b=-1;
-        int c=0;
+        int a = 0;
+        int b = -1;
+        int c = 0;
         assertEquals("setting error : minutes",testClock.set(a,b,c));
     }
     @Test

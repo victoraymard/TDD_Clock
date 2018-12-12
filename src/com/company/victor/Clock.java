@@ -10,8 +10,8 @@ enum State{
 public class Clock {
     Time theTime = new Time();
     Date theDate = new Date();
+
     //add attributes to save the sate
-    public State lastState = null;
     public State currentState = State.DISPLAYTIME;
 
 
