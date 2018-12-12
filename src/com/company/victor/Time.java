@@ -14,7 +14,7 @@ public class Time {
             theMinute = minute;
             theSecond = second;
 
-            return "Time Set";
+            return showTime();
         }
     }
 

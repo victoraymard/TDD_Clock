@@ -14,7 +14,7 @@ public class Date {
             theMonth = month;
             theDay = day;
 
-            return "Date Set";
+            return showDate();
         }
 
     }

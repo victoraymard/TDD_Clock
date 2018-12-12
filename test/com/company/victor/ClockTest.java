@@ -29,7 +29,6 @@ public class ClockTest {
 
     // CoverageTests
     // change mode
-
     @Test
     public void Given_nothing_When_ChangeModeIsCalledAndCurrentStateIsS1_Then_currentStateIsS2() {
         testClock.currentState = State.DISPLAYTIME;
@@ -84,7 +83,7 @@ public class ClockTest {
         int a=0;
         int b=0;
         int c=0;
-        assertEquals("Time Set",testClock.set(a,b,c));
+        assertEquals("0 : 0 : 0",testClock.set(a,b,c));
     }
     @Test
     public void Given_nothing_When_SetIsCalledAndCurrentStateIsS4_Then_currentStateIsS2() {
@@ -92,7 +91,7 @@ public class ClockTest {
         int a=2000;
         int b=1;
         int c=1;
-        assertEquals("Date Set",testClock.set(a,b,c));
+        assertEquals("1 / 1 / 2000",testClock.set(a,b,c));
     }
     @Test
     public void Given_nothing_When_SetIsCalledAndCurrentStateIsS1_Then_displayErrorMessage() {
@@ -170,8 +169,8 @@ public class ClockTest {
         testClock.currentState = State.CHANGETIME;
         int a = 23;
         int b = 45;
-        int c = 03;
-        assertEquals("Time Set",testClock.set(a,b,c));
+        int c = 3;
+        assertEquals("23 : 45 : 3",testClock.set(a,b,c));
     }
 
     // Date
@@ -239,7 +238,7 @@ public class ClockTest {
         int a = 2018;
         int b = 7;
         int c = 7;
-        assertEquals("Date Set",testClock.set(a,b,c));
+        assertEquals("7 / 7 / 2018",testClock.set(a,b,c));
     }
 
 }
