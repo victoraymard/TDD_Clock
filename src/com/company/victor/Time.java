@@ -7,14 +7,23 @@ public class Time {
 
     String timeSet(int hour, int minute, int second){
 
+        theHour = hour;
+        theMinute = minute;
+        theSecond = second;
+
         if(hour < 0 || hour > 23 || minute < 0 || minute > 59 || second <0 || second > 59) {
             return "setting error : format not accepted";
         } else {
-            return null;
+            return "Time Set";
         }
     }
 
     String showTime(){
-        return "Show Time";
+        String hourToString = String.valueOf(theHour);
+        String minuteToString = String.valueOf(theMinute);
+        String secondToString = String.valueOf(theSecond);
+
+        return hourToString + " : " + minuteToString + " : " + secondToString;
+
     }
 }
