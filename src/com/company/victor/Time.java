@@ -7,13 +7,13 @@ public class Time {
 
     String timeSet(int hour, int minute, int second){
 
-        theHour = hour;
-        theMinute = minute;
-        theSecond = second;
-
         if(hour < 0 || hour > 23 || minute < 0 || minute > 59 || second <0 || second > 59) {
-            return "setting error : format not accepted";
+            return "Time error : format not accepted";
         } else {
+            theHour = hour;
+            theMinute = minute;
+            theSecond = second;
+
             return "Time Set";
         }
     }

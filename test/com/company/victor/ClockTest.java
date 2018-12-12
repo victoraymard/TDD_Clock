@@ -33,12 +33,12 @@ public class ClockTest {
     @Test
     public void Given_nothing_When_ChangeModeIsCalledAndCurrentStateIsS1_Then_currentStateIsS2() {
         testClock.currentState = State.DISPLAYTIME;
-        assertEquals("Show Date",testClock.changeMode());
+        assertEquals("1 / 1 / 2000",testClock.changeMode());
     }
     @Test
     public void Given_nothing_When_ChangeModeIsCalledAndCurrentStateIsS2_Then_currentStateIsS1() {
         testClock.currentState = State.DISPLAYDATE;
-        assertEquals("Show Time",testClock.changeMode());
+        assertEquals("0 : 0 : 0",testClock.changeMode());
 
     }
     @Test
@@ -84,7 +84,7 @@ public class ClockTest {
         int a=0;
         int b=0;
         int c=0;
-        assertEquals("time set",testClock.set(a,b,c));
+        assertEquals("Time Set",testClock.set(a,b,c));
     }
     @Test
     public void Given_nothing_When_SetIsCalledAndCurrentStateIsS4_Then_currentStateIsS2() {
@@ -92,7 +92,7 @@ public class ClockTest {
         int a=2000;
         int b=1;
         int c=1;
-        assertEquals("date set",testClock.set(a,b,c));
+        assertEquals("Date Set",testClock.set(a,b,c));
     }
     @Test
     public void Given_nothing_When_SetIsCalledAndCurrentStateIsS1_Then_displayErrorMessage() {
@@ -107,13 +107,13 @@ public class ClockTest {
 
     // tests aux bords (pour les sets de time et date)
     // time
-    @Test // hour
+    @Test
     public void Given_negativeHoure_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
         testClock.currentState = State.CHANGETIME;
         int a = -1;
         int b = 0;
         int c = 0;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
     @Test
     public void Given_anHoureOver23_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
@@ -121,15 +121,15 @@ public class ClockTest {
         int a = 24;
         int b = 0;
         int c = 0;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
-    @Test // minutes
+    @Test
     public void Given_negativeMinutes_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
         testClock.currentState = State.CHANGETIME;
         int a = 0;
         int b = -1;
         int c = 0;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
     @Test
     public void Given_aMinuteOver59_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
@@ -137,15 +137,15 @@ public class ClockTest {
         int a=0;
         int b=60;
         int c=0;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
-    @Test // secondes
+    @Test
     public void Given_negativeSecondes_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
         testClock.currentState = State.CHANGETIME;
         int a=0;
         int b=0;
         int c=-1;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
     @Test
     public void Given_aSecondOver59_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
@@ -153,7 +153,7 @@ public class ClockTest {
         int a=0;
         int b=0;
         int c=60;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
 
     @Test
@@ -162,7 +162,7 @@ public class ClockTest {
         int a = -1;
         int b = 88;
         int c = 0;
-        assertEquals("setting error : format not accepted",testClock.set(a,b,c));
+        assertEquals("Time error : format not accepted",testClock.set(a,b,c));
     }
 
     @Test
@@ -172,6 +172,74 @@ public class ClockTest {
         int b = 45;
         int c = 03;
         assertEquals("Time Set",testClock.set(a,b,c));
+    }
+
+    // Date
+    @Test
+    public void Given_negativeYear_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = -1;
+        int b = 0;
+        int c = 0;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_anHoureUnder2000_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = 1998;
+        int b = 0;
+        int c = 0;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_negativeMonth_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = 0;
+        int b = -1;
+        int c = 0;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_aMinuteOver12_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = 0;
+        int b = 13;
+        int c = 0;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_negativeDay_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = 0;
+        int b = 0;
+        int c = -1;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+    @Test
+    public void Given_aSecondOver31_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = 0;
+        int b = 0;
+        int c = 32;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+
+    @Test
+    public void Given_wrongYearAndMinuteMonth_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = -1;
+        int b = 14;
+        int c = 0;
+        assertEquals("Date error : format not accepted",testClock.set(a,b,c));
+    }
+
+    @Test
+    public void Given_correctDate_When_SetIsCalledAndCurrentStateIsS3_Then_currentStateIsS1() {
+        testClock.currentState = State.CHANGEDATE;
+        int a = 2018;
+        int b = 7;
+        int c = 7;
+        assertEquals("Date Set",testClock.set(a,b,c));
     }
 
 }
