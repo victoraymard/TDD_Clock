@@ -7,17 +7,17 @@ enum State{
     CHANGEDATE
 }
 
-public class Clock {
+class Clock {
     Time theTime = new Time();
     Date theDate = new Date();
 
     //add attributes to save the sate
-    public State currentState = State.DISPLAYTIME;
+    State currentState = State.DISPLAYTIME;
 
 
 
 
-    public String changeMode(){
+    String changeMode(){
         switch (this.currentState)
         {
             case DISPLAYTIME:
@@ -30,7 +30,7 @@ public class Clock {
     }
 
 
-    public String ready(){
+    String ready(){
         switch (this.currentState){
             case DISPLAYTIME:
                 return "time is ready to set";
@@ -40,7 +40,7 @@ public class Clock {
                 return "transition impossible";
         }
     }
-    public String set(int p1, int p2, int p3){
+    String set(int p1, int p2, int p3){
 
         switch (this.currentState) {
             case CHANGEDATE:
@@ -53,5 +53,4 @@ public class Clock {
                return  "transition impossible";
         }
     }
-
 }
